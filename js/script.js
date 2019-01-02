@@ -8,6 +8,10 @@ function getJoke() {
   xhr.open('GET', url);
   xhr.addEventListener('load', function(){
     var response = JSON.parse(xhr.response);
+    if (!response.value.joke) {
+      paragraph.innerHTML = 'Server response not found';
+      return;
+    };
     paragraph.innerHTML = response.value.joke;
   });
   xhr.send();
